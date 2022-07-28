@@ -1,0 +1,69 @@
+<div class="row pt-3">
+
+    <div class="col-md-5">
+        <div>Điểm đến</div>
+        <dx-select-box
+        [items]="desList"
+        displayExpr="destinationName"
+        [(value)]="des"
+        placeholder="Chọn điểm đến cho các tour"
+        [showClearButton]="true"
+        (onValueChanged)="changedDes($event.value.destinationURL)"
+      ></dx-select-box>
+    </div>
+    <div class="col-md-5">
+        <div>Chuyến đi</div>
+        <dx-select-box
+        [items]="trips"
+        displayExpr="tripName"
+        [(value)]="trip"
+        placeholder="Chọn chuyến đi có các tour"
+        [showClearButton]="true"
+        (onValueChanged)="changedTrip($event.value.id)"
+      ></dx-select-box>
+    </div>
+    <div class="col-md-2 line">
+        <div class="line-child">
+            <dx-button icon="check" type="success" text="Tạo mới tour" (onClick)="handlerCreate()">
+            </dx-button>
+        </div>
+    </div>
+
+</div>
+
+<div class="main">
+    <div class="mainsub" *ngFor="let tour of tours">
+        <app-image-card path="{{trip.tripURL}}/{{tour.tourPath}}" [imgURL]="tour.imageURL" [id]="tour.id"
+            [btnContent]="tour.title" (editData)="handlerEdit($event)" (deleteData)="handlerDelete($event)">
+        </app-image-card>
+    </div>
+</div>
+
+<dx-popup [width]="600" [height]="350" [showTitle]="true" title="{{popupTitle}}" [dragEnabled]="true"
+    [hideOnOutsideClick]="true" [showCloseButton]="true" [(visible)]="popupVisible">
+    <!-- <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" [options]="actionButtonOptions">
+    </dxi-toolbar-item> -->
+    <dxo-position dxo-position at="center" my="center"> </dxo-position>
+    <div *dxTemplate="let data of 'content'">
+        <div>Tên tour</div>
+        <dx-text-box [maxLength]="300" [(value)]="tour.title"> </dx-text-box>
+
+        <div class="pt-5">Đường dẫn ảnh đại diện <span (click)="callRepo()" class="action">(Hoặc Lấy từ kho ảnh)</span> </div>
+        <dx-text-box [maxLength]="300" [(value)]="tour.imageURL"> </dx-text-box>
+        <div class="pt-4" style="float: right;">
+            <dx-button stylingMode="contained" text="Hoàn tất" icon="check" type="default"
+            [width]="'auto'" (onClick)="handlerAction()">
+        </dx-button>
+        </div>
+    </div>
+</dx-popup>
+
+
+<dx-popup [showTitle]="true" title="Chọn ảnh đại diện" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-trip (selectedItem)="selectedItem($event)" [isMain]="false"></app-image-trip>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

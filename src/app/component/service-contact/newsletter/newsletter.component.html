@@ -1,0 +1,39 @@
+<div class="row py-3">
+    <div class="col-md-2">
+        <app-lang [title]="'Lựa chọn ngôn ngữ'" (changedItem)="changedLanguage($event)"></app-lang>
+    </div>
+    <div class="col-md-2 line">
+        <div class="line-child">
+            <dx-button icon="check" type="success" text="Cập nhật nội dung" (onClick)="upsertInfo()">
+            </dx-button>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-md-6">
+        <div>Tiêu đề trang dịch vụ & liên hệ</div>
+        <dx-text-box [maxLength]="2000" [(value)]="news.registerTitle"> </dx-text-box>
+    </div>
+    <div class="col-md-6">
+        <div class="">Đường dẫn ảnh <span (click)="callRepo()" class="action">(Hoặc Lấy từ kho ảnh)</span> </div>
+        <dx-text-box [maxLength]="300" [(value)]="news.bannerImage"> </dx-text-box>
+    </div>
+</div>
+<div class="row py-3">
+    <div class="col-md-12">
+        <div>Nội dung trang dịch vụ & liên hệ</div>
+        <dx-text-area [height]="90" [maxLength]="300" [(value)]="news.registerContent"> </dx-text-area>
+    </div>
+</div>
+
+
+
+<dx-popup [showTitle]="true" title="Chọn ảnh banner" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-general (selectedItem)="selectedItem($event)" [isMain]="false"></app-image-general>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

@@ -1,0 +1,17 @@
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" [remoteOperations]="true" [wordWrapEnabled]="true" 
+    [showBorders]="true" [showColumnLines]="false" [rowAlternationEnabled]="true" [focusedRowEnabled]="true">
+    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+    <dxo-paging [pageSize]="2"></dxo-paging>
+    <!-- <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter> -->
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+    <dxi-column dataField="fullName" caption="Họ và tên" width="200"></dxi-column>
+    <dxi-column width="350" dataField="email" caption="Email"></dxi-column>
+    <dxi-column dataField="phone" width="150" caption="Số điện thoại"></dxi-column>
+    <dxi-column dataField="createdDate" width="150" sortOrder="desc" caption="Ngày yêu cầu" dataType="date"
+        format="yyyy-MM-dd"></dxi-column>
+    <dxi-column dataField="contactRequest" caption="Nội dung yêu cầu"></dxi-column>
+
+    <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+
+</dx-data-grid>

@@ -1,0 +1,80 @@
+<div class="row py-3">
+    <div class="col-md-2">
+        <app-lang [title]="'Lựa chọn ngôn ngữ'" (changedItem)="changedLanguage($event)"></app-lang>
+    </div>
+    <div class="col-md-2 line">
+        <div class="line-child">
+            <dx-button icon="check" type="success" text="Cập nhật nội dung" (onClick)="create()">
+            </dx-button>
+        </div>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-md-6">
+        <div>Tên tour </div>
+        <dx-text-box [maxLength]="2000" [(value)]="tourDetail.tourName"> </dx-text-box>
+    </div>
+    <div class="col-md-6">
+        <div>Đường dẫn ảnh banner <span (click)="callRepo()" class="action">(Hoặc Lấy từ kho ảnh)</span> </div>
+            <dx-text-box [maxLength]="300" [(value)]="tourDetail.imageURL"> </dx-text-box>
+      </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-md-12">
+        <div>Nội dung tổng quát của chuyến đi</div>
+        <dx-text-area [height]="90" [maxLength]="2000" [(value)]="tourDetail.quickViewContent"> </dx-text-area>
+    </div>
+</div>
+
+<div class="item my-3" *ngFor="let item of tourDetailContents">
+    <span class="ms-1 me-1" style="float: left; position: absolute; top: 5px; left: 10px;" (click)="removeElementFromObjectArray(item)">
+        <i class="bi bi-x-circle-fill" style="font-size: 1.6rem; color: rgb(240, 65, 65); cursor: pointer;" ></i>
+    </span>
+    <div class="row " >
+        <div class="col-md-4">
+            <div>Giới thiệu chung</div>
+            <dx-text-box [maxLength]="2000" [(value)]="item.title"> </dx-text-box>
+        </div>
+        <div class="col-md-4">
+            <!-- todo khoai quả gắn link đúng item -->
+            <div>Đường dẫn ảnh <span (click)="callTourRepo(item)" class="action">(Hoặc Lấy từ kho ảnh)</span> </div>
+                <dx-text-box [maxLength]="300" [(value)]="item.imgURL"> </dx-text-box>
+        </div>
+       
+    </div>
+    <div class="row py-1">
+        <div class="col-md-12">
+            <div>Mô tả</div>
+            <dx-text-area [height]="90" [maxLength]="2000" [(value)]="item.content"> </dx-text-area>
+        </div>
+    </div>
+</div>
+
+
+<div class="row py-3">
+    <div class="col-md-2 line">
+        <dx-button icon="add" type="success" text="Thêm mới nội dung" (onClick)="addNewContent()">
+        </dx-button>
+    </div>
+</div>
+
+
+<dx-popup [showTitle]="true" title="Chọn ảnh banner" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-trip (selectedItem)="selectedItem($event)" [isMain]="false"></app-image-trip>
+        </dx-scroll-view>
+    </div>
+</dx-popup>
+
+<dx-popup [showTitle]="true" title="Chọn ảnh tour" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowTourDetailContentImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-trip (selectedItem)="selectTourImagesDetailContentRepo($event)" [isMain]="false"></app-image-trip>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

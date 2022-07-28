@@ -1,0 +1,18 @@
+<div>{{title}}</div>
+<dx-select-box id="custom-templates" [dataSource]="countries" displayExpr="name"
+    (onValueChanged)="changedLanguage(country)" [(value)]="country" fieldTemplate="field">
+    <div *dxTemplate="let data of 'field'">
+        <div class="custom-item">
+            <img src="{{data.imageURL}} " />
+            <dx-text-box class="product-name" [value]="data.name" [readOnly]="true"></dx-text-box>
+        </div>
+    </div>
+    <div *dxTemplate="let data of 'item'">
+        <div class="custom-item">
+            <img src="{{ data.imageURL }}" />
+            <div class="product-name">
+                {{ data.name }}
+            </div>
+        </div>
+    </div>
+</dx-select-box>

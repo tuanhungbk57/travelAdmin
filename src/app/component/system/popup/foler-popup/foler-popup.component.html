@@ -1,0 +1,12 @@
+<dx-popup [width]="300" [height]="280" [showTitle]="true" title="Nhập tên folder" [dragEnabled]="true"
+  [hideOnOutsideClick]="true" [showCloseButton]="true" container=".dx-viewport" [(visible)]="popupVisible">
+  <dxi-toolbar-item widget="dxButton" toolbar="bottom" location="after" [options]="createFolderOptions">
+  </dxi-toolbar-item>
+
+
+  <dxo-position at="bottom" my="center"> </dxo-position>
+  <div *dxTemplate="let data of 'content'">
+    <div class="dx-field-label">Folder</div>
+    <dx-text-box placeholder="Nhập tên folder muốn tạo" [(value)]="folder.name"></dx-text-box>
+  </div>
+</dx-popup>

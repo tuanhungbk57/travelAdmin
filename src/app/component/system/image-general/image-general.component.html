@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col-md-2">
+        <div>Tạo mới folder</div>
+        <dx-text-box placeholder="Nhập tên folder muốn tạo" [(value)]="folderCreate.name"></dx-text-box>
+    </div>
+    <div class="col-md-2 line" >
+        <div class="line-child" >
+            <dx-button
+        stylingMode="contained"
+        text="Tạo folder"
+        icon="bi bi-folder-plus"
+        type="default"
+        [width]="'auto'"
+        (onClick)="createFolder($event)"
+      >
+      </dx-button>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div>Folder chứa ảnh chung</div>
+        <dx-select-box
+        [items]="folders"
+        displayExpr="name"
+        [(value)]="folder"
+        placeholder="Chọn folder"
+        [showClearButton]="true"
+        (onValueChanged)="getImagesByGenId($event.value.id)"
+      ></dx-select-box>
+    </div>
+    <div class="col-md-2 line" >
+        <div class="line-child" >
+            <app-upload [type]="2" [folderId]="folder.id" (onUploadFinished)="getImagesByGenId(folder.id)"></app-upload>
+        </div>
+    </div>
+</div>
+
+
+<div class="main">
+    <div class="mainsub" *ngFor="let item of images">
+        <div class="img-thumbnail">
+            <img class="img-fluid" src="{{urlImg}}General/{{item.folderName}}/{{item.imageName}}" alt="">
+            <div class="middle">
+                <div *ngIf="isMain" class="text" (click)="copyLink(item)">Copy link</div>
+                <div *ngIf="!isMain" class="text" (click)="select(item)">Chọn</div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+<div class="row py-3">
+  <div class="col-md-2">
+    <app-lang [title]="'Lựa chọn ngôn ngữ'" (changedItem)="changedLanguage($event)"></app-lang>
+  </div>
+  <div class="col-md-2 line">
+    <div class="line-child">
+      <dx-button icon="check" type="success" text="Cập nhật nội dung" (onClick)="upsertInfo()">
+      </dx-button>
+    </div>
+  </div>
+</div>
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề trang chủ</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.title"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div class="">Đường dẫn ảnh dịch vụ tùy chỉnh <span (click)="callRepo()" class="action">(Hoặc Lấy từ kho ảnh)</span> </div>
+    <dx-text-box [maxLength]="300" [(value)]="home.imageURL"> </dx-text-box>
+  </div>
+</div>
+
+<!-- <div class="row py-3">
+  <div class="col-md-12">
+    <div>Sơ lược về trang chủ du lịch</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.specialism"> </dx-text-box>
+  </div>
+</div> -->
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề các chuyến đi riêng lẻ</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.individualTripTitle"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div>Tiêu đề bổ sung các chuyến đi riêng lẻ</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.individualTripAdditional"> </dx-text-box>
+  </div>
+</div>
+
+<div class="row py-3">
+  <div class="col-md-12">
+    <div>Nội dung mô tả các chuyến đi riêng lẻ</div>
+    <dx-text-area [height]="90" [maxLength]="2000" [(value)]="home.individualTripContent"> </dx-text-area>
+  </div>
+</div>
+
+<!-- TODO avatar và trích dẫn -->
+
+<!--  -->
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề các điểm đến</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.destinationTitle"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div>Nội dung điểm đến</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.destinationContent"> </dx-text-box>
+  </div>
+</div>
+
+<!-- TODO ảnh điểm đến -->
+
+<!--  -->
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề bổ sung dẫn tới trang đăng ký</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.newsletterContent"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div>Tiêu đề nút đăng ký nhận tin</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.btnRegister"> </dx-text-box>
+  </div>
+</div>
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề ưu đãi độc quyền</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.exclusiveOfferTitle"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div>Tiêu đề trước video</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.videoTitle"> </dx-text-box>
+  </div>
+</div>
+
+<div class="row py-3">
+  <div class="col-md-12">
+    <div>Mã nhúng video</div>
+    <dx-text-area [height]="90" [maxLength]="2000" [(value)]="home.videoScript"> </dx-text-area>
+  </div>
+</div>
+
+<div class="row py-3">
+  <div class="col-md-6">
+    <div>Tiêu đề điểm chính của du lịch</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.pillarTravel"> </dx-text-box>
+  </div>
+  <div class="col-md-6">
+    <div>Tiêu đề bổ sung điểm chính của du lịch</div>
+    <dx-text-box [maxLength]="2000" [(value)]="home.pilarTravelAdditional"> </dx-text-box>
+  </div>
+</div>
+
+<dx-popup [showTitle]="true" title="Chọn ảnh đại diện" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-general (selectedItem)="selectedItem($event)" [isMain]="false"></app-image-general>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

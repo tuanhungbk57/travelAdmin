@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-md-6">
+        <div>Tên lãnh đạo tổ chức</div>
+        <dx-text-box placeholder="Nhập tên lãnh đạo" [(value)]="companyInfo.ceo"></dx-text-box>
+    </div>
+    <div class="col-md-6">
+        <div class="">Đường dẫn ảnh lãnh đạo <span (click)="callRepo('ceoAvatar')" class="action">(Hoặc Lấy từ kho
+                ảnh)</span> </div>
+        <dx-text-box [maxLength]="300" placeholder="Sử dụng ảnh có kích thước 175 x 175 px" [(value)]="companyInfo.ceoAvatar"> </dx-text-box>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-md-6">
+        <div>Tên công ty</div>
+        <dx-text-box placeholder="Nhập tên công ty" [(value)]="companyInfo.companyName"></dx-text-box>
+    </div>
+    <div class="col-md-6">
+        <div class="">Đường dẫn logo công ty <span (click)="callRepo('logo')" class="action">(Hoặc Lấy từ kho
+                ảnh)</span> </div>
+        <dx-text-box placeholder="Sử dụng ảnh có kích thước 87 x 67 px" [maxLength]="300" [(value)]="companyInfo.logo">
+        </dx-text-box>
+    </div>
+</div>
+
+<div class="row py-3">
+    <div class="col-md-12">
+        <div>Địa chỉ công ty</div>
+        <dx-text-area [height]="90" [maxLength]="300" [(value)]="companyInfo.address"> </dx-text-area>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div>Email</div>
+        <dx-text-box placeholder="Nhập email giao dịch" [(value)]="companyInfo.email"></dx-text-box>
+    </div>
+    <div class="col-md-4">
+        <div>Số điện thoại</div>
+        <dx-text-box placeholder="Nhập số điện thoại" [(value)]="companyInfo.phone"></dx-text-box>
+    </div>
+    <div class="col-md-4">
+        <div>Fax</div>
+        <dx-text-box placeholder="Nhập Fax" [(value)]="companyInfo.fax"></dx-text-box>
+    </div>
+</div>
+
+<div class="row pt-5">
+    <div class="col-md-2 ">
+        <dx-button stylingMode="contained" text="Cập nhật nội dung" icon="bi bi-arrow-return-left" type="default"
+            [width]="'auto'" (onClick)="updateInfo()">
+        </dx-button>
+    </div>
+</div>
+
+<dx-popup [showTitle]="true" title="Chọn ảnh lãnh đạo" [hideOnOutsideClick]="true" [fullScreen]="true"
+    [showCloseButton]="true" [(visible)]="isShowImageRepo">
+    <div *dxTemplate="let data of 'content'">
+        <dx-scroll-view width="100%" height="100%">
+            <app-image-general (selectedItem)="selectedItem($event)" [isMain]="false"></app-image-general>
+        </dx-scroll-view>
+    </div>
+</dx-popup>

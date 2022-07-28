@@ -1,18 +1,29 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { DxButtonModule } from 'devextreme-angular';
+import { LoginComponent } from './component/login/login.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BaseService } from './common/service/base.service';
+import { TransshipmentService } from './core/service/transshipment.service';
+import { AuthGuard } from './core/auth-guard';
+
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    DxButtonModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthGuard,BaseService,TransshipmentService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
