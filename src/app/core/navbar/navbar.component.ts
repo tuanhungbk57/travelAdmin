@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/common/service/auth.service';
 import { TransshipmentService } from '../service/transshipment.service';
 
 @Component({
@@ -8,10 +9,13 @@ import { TransshipmentService } from '../service/transshipment.service';
 })
 export class NavbarComponent implements OnInit {
   screenText: string = "";
-  constructor(private transshipmentService: TransshipmentService) { }
+  constructor(private transshipmentService: TransshipmentService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.transshipmentService.currentMessage.subscribe(msg => this.screenText = msg);
+  }
+  logout(){
+    this.authService.logout();
   }
 
 }

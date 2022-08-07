@@ -13,7 +13,7 @@ export class BaseService {
 
   showNoti(message: string, type: string = "success") {
     let position : object = {
-      top: 50,
+      top: 100,
       bottom: undefined,
       left: undefined,
       right: 50,
@@ -21,6 +21,7 @@ export class BaseService {
     notify({
       message: message,
       height: 'auto',
+      minHeight: 100,
       width: 'auto',
       minWidth: 150,
       type: type,

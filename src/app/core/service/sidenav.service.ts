@@ -145,14 +145,14 @@ export class SidenavService {
 
   menus = [
     {
-      title: 'Traveloka',
+      title: 'Global Prestige Admin',
       type: 'header'
     },
     {
       title: 'Khách hàng',
       icon: 'bi bi-person-hearts',
       active: false,
-      path:'#',
+      path:'customer/lead',
       type: 'dropdown',
       submenus: [
         {
@@ -169,7 +169,7 @@ export class SidenavService {
       title: 'Thông tin chung',
       icon: 'bi bi-info-square-fill',
       active: false,
-      path: '#',
+      path: 'info',
       type: 'dropdown',
       submenus: [
         {
@@ -224,7 +224,7 @@ export class SidenavService {
       title: 'Hình ảnh',
       icon: 'bi bi-images',
       active: false,
-      path:'#',
+      path:'setting/image/general',
       type: 'dropdown',
       submenus: [
         {
@@ -238,11 +238,11 @@ export class SidenavService {
         {
           title: 'Ảnh các chuyến đi',
           path:'setting/image/trip'
-        },
-        {
-          title: 'Ảnh các tour',
-          path:'setting/image/tour'
         }
+        // {
+        //   title: 'Ảnh các tour',
+        //   path:'setting/image/tour'
+        // }
       ]
     },
     {
@@ -263,11 +263,11 @@ export class SidenavService {
         {
           title: 'Trang đăng ký nhận bản tin',
           path:'service-contact/newsletter'
-        },
-        {
-          title: 'Đội ngũ cán bộ',
-          path:'service-contact/my-team'
         }
+        // {
+        //   title: 'Đội ngũ cán bộ',
+        //   path:'service-contact/my-team'
+        // }
       ]
     }
     

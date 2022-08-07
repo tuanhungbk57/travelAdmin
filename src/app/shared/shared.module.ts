@@ -18,7 +18,6 @@ import { ImageCardComponent } from './image-card/image-card.component';
   ],
   imports: [
     RouterModule,
-    HttpClientModule,
     CommonModule,
     DxSelectBoxModule,
     DxTextBoxModule,

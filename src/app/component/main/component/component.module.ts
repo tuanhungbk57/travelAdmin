@@ -8,7 +8,6 @@ import { TripComponent } from './trip/trip.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
 import { DxButtonModule, DxPopupModule, DxScrollViewModule, DxSelectBoxModule, DxTabPanelModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { CompanyInfoService } from './service/company-info.service';
-import { HttpClientModule } from '@angular/common/http';
 import { CompanyOverviewComponent } from './company-overview/company-overview.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CompanyOverviewService } from './service/company-overview.service';
@@ -46,7 +45,7 @@ import { CoreModule } from 'src/app/core/core.module';
   ],
   imports: [
     CommonModule,
-    ComponentRoutingModule, HttpClientModule,SharedModule,SystemModule,
+    ComponentRoutingModule,SharedModule,SystemModule,
     DxTextBoxModule, DxButtonModule,  DxTabPanelModule,
     DxTemplateModule,DxTextAreaModule,  DxPopupModule,DxSelectBoxModule,
     DxScrollViewModule, CoreModule,

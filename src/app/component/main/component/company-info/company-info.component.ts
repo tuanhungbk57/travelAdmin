@@ -29,15 +29,23 @@ export class CompanyInfoComponent implements OnInit {
   getInfo() {
     this.companyInfoService.getInfo().subscribe((data) => {
       if (data)
-        this.companyInfo = data[0];
+        this.companyInfo = data;
     })
   }
 
   updateInfo() {
-    this.companyInfoService.update(this.companyInfo).subscribe((data) => {
-      console.log(data);
-      this.showNoti("Cập nhật thông tin thành công")
-    });
+    if(this.companyInfo.id){
+      this.companyInfoService.update(this.companyInfo).subscribe((data) => {
+        console.log(data);
+        this.showNoti("Cập nhật thông tin thành công")
+      });
+    }else{
+      this.companyInfoService.create(this.companyInfo).subscribe((data) => {
+        console.log(data);
+        this.showNoti("Cập nhật thông tin thành công")
+      });
+    }
+    
   }
 
   showNoti(message: string) {

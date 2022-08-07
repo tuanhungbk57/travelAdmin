@@ -88,11 +88,16 @@ export class ImageComponent implements OnInit {
     }
   }
   createFolder(event: any) {
-    this.folderService.createDestination(this.folderCreate).subscribe((data: any) => {
-      this.folders.unshift(data);
-      this.getDesFolders();
-      this.folderCreate = new Folder();
-    })
+    if(this.folderValidate()){
+      this.folderService.createDestination(this.folderCreate).subscribe((data: any) => {
+        this.folders.unshift(data);
+        this.getDesFolders();
+        this.folderCreate = new Folder();
+      })
+    }else{
+      this.imageService.showNoti("Tên folder không được để trống", "error")
+    }
+    
   }
 
   getDesFolders() {
@@ -156,6 +161,11 @@ export class ImageComponent implements OnInit {
       
     },
     { position })
+  }
+
+  folderValidate(): boolean{
+    if(!this.folderCreate.name) return false;
+    return true;
   }
 
 

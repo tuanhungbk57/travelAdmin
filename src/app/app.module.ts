@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseService } from './common/service/base.service';
 import { TransshipmentService } from './core/service/transshipment.service';
 import { AuthGuard } from './core/auth-guard';
+import { AuthService } from './common/service/auth.service';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './common/service/auth-interceptor';
 
 
 @NgModule({
@@ -21,9 +25,16 @@ import { AuthGuard } from './core/auth-guard';
     BrowserModule,
     AppRoutingModule,
     DxButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule, HttpClientModule
   ],
-  providers: [AuthGuard,BaseService,TransshipmentService ],
+  providers: [AuthGuard,BaseService,TransshipmentService, AuthService,
+    {
+      provide: HTTP_INTERCEPTORS, //import { HTTP_INTERCEPTORS } from '@angular/common/http';
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

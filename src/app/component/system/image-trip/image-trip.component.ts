@@ -39,13 +39,21 @@ export class ImageTripComponent implements OnInit {
       this.transshipmentService.updateMessage("Quản lý ảnh các chuyến đi");
     }
   }
+  folderValidate(): boolean {
+    if (!this.folderCreate.name) return false;
+    return true;
+  }
   createFolder(event: any) {
-    this.folderCreate.parentId = this.desFolder.id;
+    if(this.folderValidate()){
+      this.folderCreate.parentId = this.desFolder.id;
     this.folderCreate.type = 1;
     this.folderService.createTrip(this.folderCreate).subscribe((data: any) => {
       this.tripFolders.unshift(data);
       this.folderCreate = new Folder();
     })
+    }else{
+      this.imageService.showNoti("Tên folder không được để trống", "error");
+    }
   }
 
   

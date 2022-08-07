@@ -15,7 +15,7 @@ import { TransshipmentService } from 'src/app/core/service/transshipment.service
 export class ImageGeneralComponent implements OnInit {
 
   constructor(public folderService: FolderService, public imageService: ImageService, public transshipmentService: TransshipmentService) { }
-  
+
   /**
    * Dùng cho việc tạo mới folder
    *
@@ -23,7 +23,7 @@ export class ImageGeneralComponent implements OnInit {
    * @memberof ImageGeneralComponent
    */
   folderCreate: Folder = new Folder();
-  
+
   /**
    * Dùng cho các việc liên quan đến current forlder
    *
@@ -57,7 +57,7 @@ export class ImageGeneralComponent implements OnInit {
    */
   urlImg = nth.urlImg;
 
-  
+
   /**
    * xác định là màn hình thiết lập chính hay được gọi từ nơi khác.
    * true: chính
@@ -75,16 +75,24 @@ export class ImageGeneralComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getGenFolders();
-    if(this.isMain){
+    if (this.isMain) {
       this.transshipmentService.updateMessage("Quản lý ảnh dùng chung");
     }
   }
+  folderValidate(): boolean {
+    if (!this.folderCreate.name) return false;
+    return true;
+  }
   createFolder(event: any) {
-    this.folderService.createGeneral(this.folderCreate).subscribe((data: any) => {
-      this.folders.unshift(data);
-      this.getGenFolders();
-      this.folderCreate = new Folder();
-    })
+    if (this.folderValidate()) {
+      this.folderService.createGeneral(this.folderCreate).subscribe((data: any) => {
+        this.folders.unshift(data);
+        this.getGenFolders();
+        this.folderCreate = new Folder();
+      })
+    } else {
+      this.imageService.showNoti("Tên folder không được để trống", "error")
+    }
   }
 
   getGenFolders() {
@@ -103,13 +111,13 @@ export class ImageGeneralComponent implements OnInit {
     })
   }
 
-  getImagesByDe(event: any){
+  getImagesByDe(event: any) {
     console.log(event);
     console.log(this.folder);
-    
+
   }
 
-  copyLink(item: FolderImage){
+  copyLink(item: FolderImage) {
     navigator.clipboard.writeText(`${this.urlImg}General/${item.folderName}/${item.imageName}`);
     this.showNoti('Đã copy!')
   }
@@ -120,13 +128,13 @@ export class ImageGeneralComponent implements OnInit {
    * @param {FolderImage} item
    * @memberof ImageGeneralComponent
    */
-  select(item: FolderImage){
+  select(item: FolderImage) {
     this.selectedItem.emit(`${this.urlImg}General/${item.folderName}/${item.imageName}`);
   }
 
-  
+
   showNoti(message: string) {
-    let position : object = {
+    let position: object = {
       top: 50,
       bottom: undefined,
       left: undefined,
@@ -145,9 +153,9 @@ export class ImageGeneralComponent implements OnInit {
         },
         hide: { type: 'fade', duration: 40, to: 0 },
       }
-      
+
     },
-    { position })
+      { position })
   }
 
 

@@ -1,1 +1,15 @@
-<p>subscribe works!</p>
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" [remoteOperations]="true" [wordWrapEnabled]="true" 
+    [showBorders]="true" [showColumnLines]="false" [rowAlternationEnabled]="true" [focusedRowEnabled]="true">
+    <dxo-scrolling mode="virtual" rowRenderingMode="virtual"></dxo-scrolling>
+    <dxo-paging [pageSize]="2"></dxo-paging>
+    <!-- <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter> -->
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Search..."></dxo-search-panel>
+    <dxi-column dataField="fullName" caption="Họ và tên" width="400"></dxi-column>
+    <dxi-column width="400" dataField="email" caption="Email"></dxi-column>
+    <dxi-column dataField="createdDate" width="150" sortOrder="desc" caption="Ngày đăng ký" dataType="date"
+        format="yyyy-MM-dd"></dxi-column>
+
+    <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+
+</dx-data-grid>
