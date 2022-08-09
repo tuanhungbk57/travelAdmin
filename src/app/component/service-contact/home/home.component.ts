@@ -32,12 +32,12 @@ export class HomeComponent implements OnInit {
     if (this.home.id > 0) {
       this.homeService.update(this.home).subscribe((data: any) => {
         console.log(data);
-        this.home.id = data;
         this.homeService.showNoti("Cập nhật thành công");
       })
     } else {
       this.homeService.create(this.home).subscribe((data: any) => {
         console.log(data);
+        this.home.id = data;
         this.homeService.showNoti("Cập nhật thành công");
       })
     }

@@ -75,8 +75,12 @@ export class TourDetailComponent implements OnInit {
    */
   getTourDetailByMasterAndLang(tourId: number, lang: string) {
     this.tourDetailService.getByTourMasterIdAndLang(tourId, lang).subscribe((data: any) => {
+    if(data){
       this.tourDetail = data;
       this.tourDetailContents = JSON.parse(this.tourDetail.content);
+    }else{
+      this.tourDetail = new TourDetail();
+    }
     })
   }
 

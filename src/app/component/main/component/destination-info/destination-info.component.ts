@@ -34,12 +34,12 @@ export class DestinationInfoComponent implements OnInit {
       this.desInfoService.update(this.desInfo).subscribe((data: any) => {
         console.log(data);
         this.desInfoService.showNoti("Cập nhật thành công");
-        this.desInfo.id = data;
       })
     } else {
       this.desInfoService.create(this.desInfo).subscribe((data: any) => {
         console.log(data);
-        this.desInfoService.showNoti("Cập nhật thành công");
+        this.desInfo.id = data;
+        this.desInfoService.showNoti("Tạo mới thành công");
       })
     }
   }

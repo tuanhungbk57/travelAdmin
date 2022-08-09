@@ -42,6 +42,9 @@ export class CompanyInfoComponent implements OnInit {
     }else{
       this.companyInfoService.create(this.companyInfo).subscribe((data) => {
         console.log(data);
+        if(data){
+          this.companyInfo.id = data
+        }
         this.showNoti("Cập nhật thông tin thành công")
       });
     }

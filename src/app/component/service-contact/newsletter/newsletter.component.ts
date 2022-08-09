@@ -34,12 +34,12 @@ export class NewsletterComponent implements OnInit {
     if (this.news.id > 0) {
       this.newsService.update(this.news).subscribe((data: any) => {
         console.log(data);
-        this.news.id = data;
         this.newsService.showNoti("Cập nhật thành công");
       })
     } else {
       this.newsService.create(this.news).subscribe((data: any) => {
         console.log(data);
+        this.news.id = data;
         this.newsService.showNoti("Cập nhật thành công");
       })
     }

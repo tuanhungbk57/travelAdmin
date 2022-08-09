@@ -35,12 +35,12 @@ export class CompanyOverviewComponent implements OnInit {
     if (this.com.id > 0) {
       this.srv.update(this.com).subscribe((data: any) => {
         console.log(data);
-        this.com.id = data;
         this.srv.showNoti("Cập nhật thành công");
       })
     } else {
       this.srv.create(this.com).subscribe((data: any) => {
         console.log(data);
+        this.com.id = data;
         this.srv.showNoti("Cập nhật thành công");
       })
     }

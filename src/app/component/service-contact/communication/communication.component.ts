@@ -32,12 +32,12 @@ export class CommunicationComponent implements OnInit {
     if (this.com.id > 0) {
       this.comService.update(this.com).subscribe((data: any) => {
         console.log(data);
-        this.com.id = data;
         this.comService.showNoti("Cập nhật thành công");
       })
     } else {
       this.comService.create(this.com).subscribe((data: any) => {
         console.log(data);
+        this.com.id = data;
         this.comService.showNoti("Cập nhật thành công");
       })
     }

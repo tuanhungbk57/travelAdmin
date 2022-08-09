@@ -36,11 +36,11 @@ export class HomePageComponent implements OnInit {
       this.homeService.update(this.home).subscribe((data: any) => {
         console.log(data);
         this.homeService.showNoti("Cập nhật thành công");
-        this.home.id = data;
       })
     } else {
       this.homeService.create(this.home).subscribe((data: any) => {
         console.log(data);
+        this.home.id = data;
         this.homeService.showNoti("Cập nhật thành công");
       })
     }

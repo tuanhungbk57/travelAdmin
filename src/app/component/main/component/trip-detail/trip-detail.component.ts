@@ -95,7 +95,11 @@ export class TripDetailComponent implements OnInit {
 
   getByTripPathAndLang(tripMasterId: number, lang: string){
       this.tripDetailService.getByTripMasterIdAndLang(tripMasterId, lang).subscribe((data: TripDetail) =>{
-        this.tripDetail = data;
+        if(data){
+          this.tripDetail = data;
+        }else{
+          this.tripDetail = new TripDetail();
+        }
       },
       error =>{
         this.tripDetail = new TripDetail();

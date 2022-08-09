@@ -39,9 +39,14 @@ export class BaseService {
 
   getCurrentLang(): CountryLang{
     const lang = localStorage.getItem('lang');
+    if(!lang){
+      localStorage.setItem('lang',nth.langs[1].key);
+      return nth.langs[1].key;
+    }
     const langObj = nth.langs.filter((item: CountryLang) =>{
       return item.key == lang;
     })[0];
+    
     return langObj;
   }
 }
