@@ -6,6 +6,8 @@ import { ImageService } from '../service/image.service';
 import * as nth from 'src/app/common/util'
 import notify from 'devextreme/ui/notify';
 import { TransshipmentService } from 'src/app/core/service/transshipment.service';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 
 /**
@@ -22,7 +24,7 @@ import { TransshipmentService } from 'src/app/core/service/transshipment.service
 })
 export class ImageComponent implements OnInit {
 
-  constructor(public folderService: FolderService, public imageService: ImageService, public transshipmentService: TransshipmentService) { }
+  constructor(public folderService: FolderService, public imageService: ImageService, public transshipmentService: TransshipmentService, private http: HttpClient) { }
   
   /**
    * Dùng cho việc tạo mới folder
@@ -109,8 +111,9 @@ export class ImageComponent implements OnInit {
       }
     })
   }
-
+desId: number = -1;
   getImagesByDesId(desId: number) {
+    this.desId = desId;
     this.imageService.getImageByDesId(desId).subscribe((data: any) => {
       this.images = data;
     })
@@ -125,6 +128,24 @@ export class ImageComponent implements OnInit {
   copyLink(item: FolderImage){
     navigator.clipboard.writeText(`${this.urlImg}Destination/${item.folderName}/${item.imageName}`);
     this.showNoti('Đã copy!')
+  }
+  deleteService(url): Observable<any>{
+    let reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
+    
+    return this.http.delete(url, {headers:reqHeader, responseType: 'text'});
+  }
+
+  deleteItem(item: FolderImage){
+    
+    let url = `${nth.urlAPI}api/Upload/Destination/${item.folderName}/${item.imageName}/${item.id}`;
+    this.deleteService(url).subscribe(()=>{
+      console.log("delete: ", url);
+      this.showNoti('Đã xóa ảnh!');
+      const arr = this.images.filter((it: any) =>{ 
+        return it.id != item.id
+       });
+       this.images = arr;
+    });
   }
 
   /**
@@ -166,6 +187,16 @@ export class ImageComponent implements OnInit {
   folderValidate(): boolean{
     if(!this.folderCreate.name) return false;
     return true;
+  }
+
+  isShowCopy = '';
+  isShowDelete = '';
+  toggleDelete(x) {
+    this.isShowDelete = x
+  }
+
+  toggleCopy(x) {
+    this.isShowCopy = x
   }
 
 

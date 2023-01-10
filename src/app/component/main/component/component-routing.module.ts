@@ -67,6 +67,10 @@ const routes: Routes = [
   {
     path:"customer",
     loadChildren: () => import('../../../component/customer/customer.module').then(m =>m.CustomerModule)
+  },
+  {
+    path:"blog",
+    loadChildren: () => import('../../../component/blog/blog.module').then(m =>m.BlogModule)
   }
  
 ];

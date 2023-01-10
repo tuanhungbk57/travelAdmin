@@ -1,7 +1,7 @@
 // export const urlAPI: string = 'https://localhost:7273/';
 // export const urlImg: string = 'http://localhost:8898/Images/';
-export const urlAPI: string = 'http://api.globalprestigetravel.com/';
-export const urlImg: string = 'http://cdn.globalprestigetravel.com/';
+export const urlAPI: string = 'https://api.globalprestigetravel.com/';
+export const urlImg: string = 'https://cdn.globalprestigetravel.com/';
 export const langs:any[] = [
     {key: "en", name: "Tiếng Anh", imageURL: '/assets/img/flag/united-kingdom.png'},
     {key: "vi", name: "Tiếng Việt", imageURL: '/assets/img/flag/vietnam.png'},

@@ -34,7 +34,9 @@
         <div class="img-thumbnail">
             <img class="img-fluid" src="{{urlImg}}Trip/{{item.folderName}}/{{item.imageName}}" alt="">
             <div class="middle">
-                <div *ngIf="isMain" class="text" (click)="copyLink(item)">Copy link</div>
+                <!-- <div *ngIf="isMain" class="text" (click)="copyLink(item)">Copy link</div> -->
+                <i *ngIf="isMain" class="bi bi-clipboard copy" (click)="copyLink(item)" ></i>
+                <i *ngIf="isMain" class="bi bi-x-circle-fill delete" (click)="deleteItem(item)"></i>
                 <div *ngIf="!isMain" class="text" (click)="select(item)">Chọn</div>
             </div>
         </div>

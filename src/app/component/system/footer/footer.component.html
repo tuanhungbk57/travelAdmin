@@ -1,0 +1,96 @@
+<div class="row py-3">
+    <div class="col-md-2">
+        <app-lang [title]="'Lựa chọn ngôn ngữ'" (changedItem)="changedLanguage($event)"></app-lang>
+    </div>
+    <div class="col-md-2 line">
+        <div class="line-child">
+            <dx-button icon="check" type="success" text="Cập nhật nội dung" (onClick)="create()">
+            </dx-button>
+        </div>
+    </div>
+</div>
+
+<dx-tab-panel>
+    <dxi-item title="Thiết lập nội dung Cột 2">
+        <div class="row py-3">
+            <div class="col-md-6">
+                <div>Tiêu đề thể hiện các nội dung đường dẫn nổi bật</div>
+                <dx-text-box [maxLength]="2000" [(value)]="footer.labelColumn2"> </dx-text-box>
+            </div>
+        </div>
+        <div class="item my-3" *ngFor="let item of column2">
+            <span class="ms-1 me-1" style="float: left; position: absolute; top: 5px; left: 10px;"
+                (click)="removeElementFromColumn2(item)">
+                <i class="bi bi-x-circle-fill" style="font-size: 1.6rem; color: rgb(240, 65, 65); cursor: pointer;"></i>
+            </span>
+            <div class="row ">
+                <div class="col-md-6">
+                    <div>Tiêu đề</div>
+                    <dx-text-box [maxLength]="2000" [(value)]="item.label"> </dx-text-box>
+                </div>
+                <div class="col-md-6">
+                    <!-- todo khoai quả gắn link đúng item -->
+                    <div>Đường dẫn </div>
+                    <dx-text-box [maxLength]="2000" [(value)]="item.link"> </dx-text-box>
+                </div>
+
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-2 line">
+                <dx-button icon="add" type="success" text="Thêm mới nội dung" (onClick)="addNewLinkToColumn2()">
+                </dx-button>
+            </div>
+        </div>
+    </dxi-item>
+    <dxi-item title="Thiết lập nội dung cột 3">
+        <div class="row py-3">
+            <div class="col-md-6">
+                <div>Nội dung bản tin chân trang</div>
+                <dx-text-box [maxLength]="2000" [(value)]="footer.labelColumn3"> </dx-text-box>
+            </div>
+            <div class="col-md-6">
+                <div>Tiêu đề nút đăng ký</div>
+                <dx-text-box [maxLength]="50" [(value)]="footer.column3"> </dx-text-box>
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-12">
+                <div>Nội dung chuyên đề</div>
+                <dx-text-area [height]="90" [maxLength]="2000" [(value)]="footer.newsColumn3"> </dx-text-area>
+              </div>
+        </div>
+    </dxi-item>
+    <dxi-item title="Thiết lập nội dung cột 4">
+        <div class="row py-3">
+            <div class="col-md-6">
+                <div>Tiêu đề thể hiện các nội dung đường dẫn nổi bật</div>
+                <dx-text-box [maxLength]="2000" [(value)]="footer.labelColumn4"> </dx-text-box>
+            </div>
+        </div>
+        <div class="item my-3" *ngFor="let item of column4">
+            <span class="ms-1 me-1" style="float: left; position: absolute; top: 5px; left: 10px;"
+                (click)="removeElementFromColumn4(item)">
+                <i class="bi bi-x-circle-fill" style="font-size: 1.6rem; color: rgb(240, 65, 65); cursor: pointer;"></i>
+            </span>
+            <div class="row ">
+                <div class="col-md-6">
+                    <div>Tiêu đề</div>
+                    <dx-text-box [maxLength]="2000" [(value)]="item.label"> </dx-text-box>
+                </div>
+                <div class="col-md-6">
+                    <!-- todo khoai quả gắn link đúng item -->
+                    <div>Đường dẫn </div>
+                    <dx-text-box [maxLength]="2000" [(value)]="item.link"> </dx-text-box>
+                </div>
+
+            </div>
+        </div>
+        <div class="row py-3">
+            <div class="col-md-2 line">
+                <dx-button icon="add" type="success" text="Thêm mới nội dung" (onClick)="addNewLinkToColumn4()">
+                </dx-button>
+            </div>
+        </div>
+    </dxi-item>
+</dx-tab-panel>

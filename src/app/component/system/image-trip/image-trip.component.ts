@@ -5,6 +5,9 @@ import { FolderService } from '../service/folder.service';
 import { ImageService } from '../service/image.service';
 import * as nth from 'src/app/common/util'
 import { TransshipmentService } from 'src/app/core/service/transshipment.service';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import notify from 'devextreme/ui/notify';
 
 @Component({
   selector: 'app-image-trip',
@@ -13,7 +16,7 @@ import { TransshipmentService } from 'src/app/core/service/transshipment.service
 })
 export class ImageTripComponent implements OnInit {
 
-  constructor(public folderService: FolderService, public imageService: ImageService, public transshipmentService: TransshipmentService) { }
+  constructor(public folderService: FolderService, public imageService: ImageService, public transshipmentService: TransshipmentService, private http: HttpClient) { }
   folderCreate: Folder = new Folder();
   desFolder: Folder = new Folder();
   desFolders: Folder[] = [];
@@ -102,6 +105,26 @@ export class ImageTripComponent implements OnInit {
     navigator.clipboard.writeText(`${this.urlImg}Trip/${item.folderName}/${item.imageName}`);
   }
 
+  deleteService(url): Observable<any>{
+    let reqHeader = new HttpHeaders({ 'Content-Type': 'application/json','No-Auth':'True' });
+    
+    return this.http.delete(url, {headers:reqHeader, responseType: 'text'});
+  }
+
+  deleteItem(item: FolderImage){
+    
+    let url = `${nth.urlAPI}api/Upload/Trip/${item.folderName}/${item.imageName}/${item.id}`;
+    this.deleteService(url).subscribe(()=>{
+      console.log("delete: ", url);
+      this.showNoti('Đã xóa ảnh!');
+      const arr = this.images.filter((it: any) =>{ 
+        return it.id != item.id
+       });
+       this.images = arr;
+    });
+  }
+
+
   /**
    * Hàm bắn event cho child khi lựa chọn 1 item
    *
@@ -110,6 +133,31 @@ export class ImageTripComponent implements OnInit {
    */
    select(item: FolderImage){
     this.selectedItem.emit(`${this.urlImg}Trip/${item.folderName}/${item.imageName}`);
+  }
+
+  showNoti(message: string) {
+    let position: object = {
+      top: 50,
+      bottom: undefined,
+      left: undefined,
+      right: 50,
+    };
+    notify({
+      message: message,
+      height: 45,
+      width: 150,
+      minWidth: 150,
+      type: 'success',
+      displayTime: 1000,
+      animation: {
+        show: {
+          type: 'fade', duration: 400, from: 0, to: 1,
+        },
+        hide: { type: 'fade', duration: 40, to: 0 },
+      }
+
+    },
+      { position })
   }
 
 }

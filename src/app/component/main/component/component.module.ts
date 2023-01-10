@@ -6,7 +6,7 @@ import { DestinationComponent } from './destination/destination.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { TripComponent } from './trip/trip.component';
 import { CompanyInfoComponent } from './company-info/company-info.component';
-import { DxButtonModule, DxPopupModule, DxScrollViewModule, DxSelectBoxModule, DxTabPanelModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
+import { DxButtonModule, DxPopupModule, DxScrollViewModule, DxSelectBoxModule,DxCheckBoxModule, DxTabPanelModule, DxTemplateModule, DxTextAreaModule, DxTextBoxModule } from 'devextreme-angular';
 import { CompanyInfoService } from './service/company-info.service';
 import { CompanyOverviewComponent } from './company-overview/company-overview.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -18,7 +18,6 @@ import { DestiantionMasterService } from './service/destination/destiantion-mast
 import { SystemModule } from '../../system/system.module';
 import { TripService } from './service/trip/trip.service';
 import { TripDetailComponent } from './trip-detail/trip-detail.component';
-import { TripItemComponent } from './trip-item/trip-item.component';
 import { TripDetailService } from './service/trip/trip-detail.service';
 import { TourComponent } from './tour/tour/tour.component';
 import { TourDetailComponent } from './tour/tour-detail/tour-detail.component';
@@ -38,7 +37,6 @@ import { CoreModule } from 'src/app/core/core.module';
     CompanyOverviewComponent,
     DestinationMasterComponent,
     TripDetailComponent,
-    TripItemComponent,
     TourComponent,
     TourDetailComponent,
     DestinationInfoComponent
@@ -47,7 +45,7 @@ import { CoreModule } from 'src/app/core/core.module';
     CommonModule,
     ComponentRoutingModule,SharedModule,SystemModule,
     DxTextBoxModule, DxButtonModule,  DxTabPanelModule,
-    DxTemplateModule,DxTextAreaModule,  DxPopupModule,DxSelectBoxModule,
+    DxTemplateModule,DxTextAreaModule,  DxPopupModule,DxSelectBoxModule, DxCheckBoxModule,
     DxScrollViewModule, CoreModule,
   ],
   providers:[CompanyInfoService, CompanyOverviewService, TripService, TripDetailService,TourService, TourDetailService,

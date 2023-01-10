@@ -81,7 +81,17 @@ export class DestinationMasterComponent implements OnInit {
     // };
   }
 
+  /**
+   * Biến xác định có phải là điểm đến đặc biệt hay không
+   *
+   * @type {boolean}
+   * @memberof DestinationMasterComponent
+   */
+  isSpecial: boolean = false;
+
   ngOnInit(): void {
+    this.isSpecial = false;
+   
     this.getAll();
     this.transshipmentService.updateMessage("Quản lý các điểm đến");
   }
@@ -89,6 +99,7 @@ export class DestinationMasterComponent implements OnInit {
   getAll(){
     this.service.getAll().subscribe((data: any) =>{
       this.masters = data;
+      
     })
   }
 
@@ -115,10 +126,12 @@ export class DestinationMasterComponent implements OnInit {
    * @memberof DestinationMasterComponent
    */
   editMaster(master: DestiantionMaster){
+     master.isSpecial = this.isSpecial;
     this.service.editMaster(master).subscribe((data: any) =>{
       this.service.showNoti("Cập nhật thành công");
       this.endCallRepo();
       this.popupVisible = false;
+      this.isSpecial = false;
     })
   }
 
@@ -131,12 +144,14 @@ export class DestinationMasterComponent implements OnInit {
    */
   createMaster(master: DestiantionMaster){
     // todo Kiểm tra điểm đến đã tồn tại hay chưa
-    master.destinationURL = nth.removeVietnameseTones(master.destinationName)
+    master.destinationURL = nth.removeVietnameseTones(master.destinationName);
+    master.isSpecial = this.isSpecial;
     this.service.createMaster(master).subscribe((data: any) =>{
       this.service.showNoti("Tạo mới thành công");
       this.getAll();
       this.endCallRepo();
       this.popupVisible = false;
+      this.isSpecial = false;
     })
   }
 
@@ -161,6 +176,7 @@ export class DestinationMasterComponent implements OnInit {
     this.master = this.masters.filter((item: DestiantionMaster) =>{
       return item.id == id;
     })[0];
+    this.isSpecial = this.master.isSpecial;
   }
 
 
@@ -175,6 +191,7 @@ export class DestinationMasterComponent implements OnInit {
     this.popupTitle = "Tạo mới điểm đến";
     this.actionText =  "Tạo mới";
     this.master = new DestiantionMaster();
+    this.master.isSpecial = false;
   }
 
   callRepo(){

@@ -3,32 +3,20 @@
         <div>Tạo mới folder</div>
         <dx-text-box placeholder="Nhập tên folder muốn tạo" [(value)]="folderCreate.name"></dx-text-box>
     </div>
-    <div class="col-md-2 line" >
-        <div class="line-child" >
-            <dx-button
-        stylingMode="contained" 
-        text="Tạo folder"
-        icon="bi bi-folder-plus"
-        type="default"
-        [width]="'auto'"
-        (onClick)="createFolder($event)"
-      >
-      </dx-button>
+    <div class="col-md-2 line">
+        <div class="line-child">
+            <dx-button stylingMode="contained" text="Tạo folder" icon="bi bi-folder-plus" type="default"
+                [width]="'auto'" (onClick)="createFolder($event)">
+            </dx-button>
         </div>
     </div>
     <div class="col-md-6">
         <div>Folder chứa ảnh điểm đến</div>
-        <dx-select-box
-        [items]="folders"
-        displayExpr="name"
-        [(value)]="folder"
-        placeholder="Chọn folder"
-        [showClearButton]="true"
-        (onValueChanged)="getImagesByDesId($event.value.id)"
-      ></dx-select-box>
+        <dx-select-box [items]="folders" displayExpr="name" [(value)]="folder" placeholder="Chọn folder"
+            [showClearButton]="true" (onValueChanged)="getImagesByDesId($event.value.id)"></dx-select-box>
     </div>
-    <div class="col-md-2 line" >
-        <div class="line-child" >
+    <div class="col-md-2 line">
+        <div class="line-child">
             <app-upload [type]="0" [folderId]="folder.id" (onUploadFinished)="getImagesByDesId(folder.id)"></app-upload>
         </div>
     </div>
@@ -36,12 +24,16 @@
 
 
 <div class="main">
-    <div class="mainsub" *ngFor="let item of images">
+    <div class="mainsub" *ngFor="let item of images; let i=index">
         <div class="img-thumbnail">
             <img class="img-fluid" src="{{urlImg}}Destination/{{item.folderName}}/{{item.imageName}}" alt="">
             <div class="middle">
-                <div *ngIf="isMain" class="text" (click)="copyLink(item)">Copy link</div>
+                <!-- <div *ngIf="isMain" class="text" (click)="copyLink(item)">Copy link</div> -->
+                <i *ngIf="isMain" class="bi bi-clipboard copy" (click)="copyLink(item)" ></i>
+                <i *ngIf="isMain" class="bi bi-x-circle-fill delete" (click)="deleteItem(item)"></i>
                 <div *ngIf="!isMain" class="text" (click)="select(item)">Chọn</div>
+
+                
             </div>
         </div>
     </div>

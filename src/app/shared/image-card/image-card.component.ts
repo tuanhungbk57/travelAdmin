@@ -11,6 +11,7 @@ export class ImageCardComponent implements OnInit {
   @Input() imgURL: string = "";
   @Input() btnContent: string = "";
   @Input() id: number = -1;
+  @Input() isSpecial: boolean = false;
 
   @Output() editData = new EventEmitter<any>();
   @Output() deleteData = new EventEmitter<any>();
@@ -19,11 +20,11 @@ export class ImageCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editClick(){
+  editClick() {
     this.editData.emit(this.id);
   }
 
-  deleteClick(){
+  deleteClick() {
     this.deleteData.emit(this.id);
   }
 

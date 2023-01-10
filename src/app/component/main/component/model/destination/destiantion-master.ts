@@ -3,4 +3,5 @@ export class DestiantionMaster {
     imageURL!: string;
     destinationName!: string;
     destinationURL!: string;
+    isSpecial!: boolean;
 }

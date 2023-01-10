@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FooterComponent } from './footer/footer.component';
 import { ImageGeneralComponent } from './image-general/image-general.component';
 import { ImageTourComponent } from './image-tour/image-tour.component';
 import { ImageTripComponent } from './image-trip/image-trip.component';
@@ -25,10 +26,6 @@ const routes: Routes = [
     component: ImageTripComponent
   },
   {
-    path: 'image/tour',
-    component: ImageTourComponent
-  },
-  {
     path: 'image/general',
     component: ImageGeneralComponent
   },
@@ -36,6 +33,10 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent
   },
+  {
+    path: 'footer',
+    component: FooterComponent
+  }
   
 ];
 

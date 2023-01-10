@@ -221,6 +221,56 @@ export class SidenavService {
       type: 'simple'   
     },
     {
+      title: 'Dịch vụ và liên hệ',
+      icon: 'bi bi-stars',
+      active: false,
+      path:'service-contact',
+      type: 'dropdown',
+      submenus: [
+        {
+          title: 'Trang giới thiệu dịch vụ',
+          path:'service-contact'
+        },
+        {
+          title: 'Trang tiếp nhận thông tin khách hàng',
+          path:'service-contact/communication'
+        },
+        {
+          title: 'Trang đăng ký nhận bản tin',
+          path:'service-contact/newsletter'
+        }
+        // {
+        //   title: 'Đội ngũ cán bộ',
+        //   path:'service-contact/my-team'
+        // }
+      ]
+    },
+    {
+      title: 'Blog du lịch',
+      icon: 'bi bi-book-fill',
+      active: false,
+      path:'blog/general',
+      type: 'dropdown',
+      submenus: [
+        {
+          title: 'Blog tổng quan',
+          path:'blog/general'
+        },
+        {
+          title: 'Thiết lập các blog',
+          path:'blog/setting'
+        },
+        {
+          title: 'Quản lý bài viết',
+          path:'blog/detail'
+        }
+        // {
+        //   title: 'Ảnh các tour',
+        //   path:'setting/image/tour'
+        // }
+      ]
+    },
+    {
       title: 'Hình ảnh',
       icon: 'bi bi-images',
       active: false,
@@ -246,29 +296,11 @@ export class SidenavService {
       ]
     },
     {
-      title: 'Dịch vụ và liên hệ',
-      icon: 'bi bi-stars',
+      title: 'Thiết lập chân trang',
+      icon: 'bi bi-signpost-split-fill',
       active: false,
-      path:'service-contact',
-      type: 'dropdown',
-      submenus: [
-        {
-          title: 'Trang giới thiệu dịch vụ',
-          path:'service-contact'
-        },
-        {
-          title: 'Trang tiếp nhận thông tin khách hàng',
-          path:'service-contact/communication'
-        },
-        {
-          title: 'Trang đăng ký nhận bản tin',
-          path:'service-contact/newsletter'
-        }
-        // {
-        //   title: 'Đội ngũ cán bộ',
-        //   path:'service-contact/my-team'
-        // }
-      ]
+      path: 'setting/footer',
+      type: 'simple'   
     }
     
    
